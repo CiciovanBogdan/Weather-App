@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { count: 0 }
+  }
+
+  increment = () => {
+    this.setState({ count: this.state.count + 1 })
+  }
+
+  decrement = () => {
+    this.setState({ count: this.state.count - 1 })
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.increment} className='btn btn-success' disabled={this.state.count === 10}>+</button>
+        <button onClick={this.decrement} className='btn btn-warning' disabled={this.state.count === 0}>-</button>
+        <h1>The value is {this.state.count}</h1>
+      </div>
+    )
+  }
 }
 
-export default App;
+
+const MyVersion = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <button onClick={() => setCount(count - 1)}>-</button>
+      <h1>The count is {count}</h1>
+    </div>
+  )
+}
+
+export default MyVersion;
